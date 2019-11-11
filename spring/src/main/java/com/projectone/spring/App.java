@@ -4,6 +4,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.projectone.beans.Ciudad;
 import com.projectone.beans.Mundo;
 import com.projectone.beans.Persona;
 
@@ -126,13 +128,35 @@ public class App {
 		 * Referenciando Beans mediante alisas mediante el tag name en <bean> en el XML
  		 * 
 		 * */
+			/*
+			 * Ejemplo de tag name en <bean>
+			 * 
+			 * */
+			/*
+			ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+			Persona per = (Persona) appContext.getBean("personaBean2");//Uso el name del <bean>
+			System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudad: " + per.getPais().getCiudad().getNombre());
+			
+			((ConfigurableApplicationContext)appContext).close();
+			*/
+		
+		
 		/*
-		 * Ejemplo de tag name en <bean>
+		 * Referenciando Beans con atributo que es una coleccion
+ 		 * 
+		 * */
+		/*
+		 * Ejemplo de declaracion de colecciones de un bean en el xml y aqui se muestran
 		 * 
 		 * */
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
-		Persona per = (Persona) appContext.getBean("personaBean2");//Uso el name del <bean>
-		System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudad: " + per.getPais().getCiudad().getNombre());
+		Persona per = (Persona) appContext.getBean("personaBean2");
+		String nombresCiudades = "\t";
+		for(Ciudad ciudad : per.getPais().getCiudades()) {
+			nombresCiudades += ciudad.getNombre() + "\n\t";
+		}
+		
+		System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudades:\n" + nombresCiudades);
 		
 		((ConfigurableApplicationContext)appContext).close();
 	}

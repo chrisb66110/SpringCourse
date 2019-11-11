@@ -95,7 +95,7 @@
 			Mediante ref hacemos referencia al bean pais que tiene una ref al bean ciudad
 		Haciendo referencia a beans
 			-Usando name en el <alias> 
-			-Usando name en el <bean> -->
+			-Usando name en el <bean> 
 	<bean id="persona" class="com.projectone.beans.Persona" name="personaBean2">
 		<property name="pais" ref="pais"></property>
 		<property name="id" value="1"></property>
@@ -105,7 +105,7 @@
 	
 	<bean id="pais" class="com.projectone.beans.Pais">
 		<property name="nombre" value="Costa Rica"></property>
-		<property name="ciudad" ref="ciudad"></property>
+		<property name="ciudad" ref="ciudad"	</property>
 	</bean>
 	
 	<bean id="ciudad" class="com.projectone.beans.Ciudad">
@@ -113,7 +113,40 @@
 	</bean>
 	
 	<alias name="persona" alias="personaBean"></alias>
+	-->
 	
 	
+	
+	<!-- Prueba de bean con atributo que es una coleccion 
+			Usando el <list> y <ref>-->
+	<bean id="persona" class="com.projectone.beans.Persona" name="personaBean2">
+		<property name="pais" ref="pais"></property>
+		<property name="id" value="1"></property>
+		<property name="nombre" value="Christofer"></property>
+		<property name="apodo" value="Tifo"></property>
+	</bean>
+	
+	<bean id="pais" class="com.projectone.beans.Pais">
+		<property name="nombre" value="Costa Rica"></property>
+		<property name="ciudades">
+			<list>
+				<ref bean="ciudad1"/>
+				<ref bean="ciudad2"/>
+				<ref bean="ciudad3"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="ciudad1" class="com.projectone.beans.Ciudad">
+		<property name="nombre" value="San Jose"></property>
+	</bean>
+	
+	<bean id="ciudad2" class="com.projectone.beans.Ciudad">
+		<property name="nombre" value="Puntarenas"></property>
+	</bean>
+	
+	<bean id="ciudad3" class="com.projectone.beans.Ciudad">
+		<property name="nombre" value="Cartago"></property>
+	</bean>
 
 </beans>
