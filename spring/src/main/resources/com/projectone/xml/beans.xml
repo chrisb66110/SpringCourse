@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Prueba de Mundo
+	<bean id="mundo" class="com.projectone.beans.Mundo">
+		<property name="saludo" value="Hola Mundo!"></property>
+	</bean>
+	-->
+	<!-- Prueba de Persona con los 3 parametros en el constructor
+	<bean id="persona" class="com.projectone.beans.Persona">
+		<constructor-arg value="1"></constructor-arg>
+		<constructor-arg value="Christofer"></constructor-arg>
+		<constructor-arg value="Tifo"></constructor-arg>
+	</bean>
+	-->
+	
+	<!-- Prueba de Persona con 1 parametro en el constructor cuando hay un solo contructor con un parametro
+	<bean id="persona" class="com.projectone.beans.Persona">
+		<constructor-arg value="1"></constructor-arg>
+	</bean>
+	-->
+	
+	<!-- Prueba de Persona con 1 parametro en el constructor cuando 
+	hay varios contructores con un parametro se le indica el tipo para que sepa cual usar
+	<bean id="persona" class="com.projectone.beans.Persona">
+		<constructor-arg type="int" value="1"></constructor-arg>
+	</bean>
+	-->
+	
+	<!-- Prueba de Persona con los 3 parametros en el constructor
+		Prueba donde se indica el orden de los parametros mediante la propiedad index
+	<bean id="persona" class="com.projectone.beans.Persona">
+		<constructor-arg index="0" value="1"></constructor-arg>
+		<constructor-arg index="2" value="Tifo"></constructor-arg>
+		<constructor-arg index="1" value="Christofer"></constructor-arg>
+	</bean>
+	-->
+	
+	<!-- Prueba de Persona con un atributo que es otro objeto
+			Mediante ref hacemos referencia al bean pais
+	<bean id="persona" class="com.projectone.beans.Persona">
+		<property name="pais" ref="pais"></property>
+		<property name="id" value="1"></property>
+		<property name="nombre" value="Christofer"></property>
+		<property name="apodo" value="Tifo"></property>
+	</bean>
+	
+	<bean id="pais" class="com.projectone.beans.Pais">
+		<property name="nombre" value="Costa Rica"></property>
+	</bean>
+	-->
+	
+	<!-- Prueba de Persona con un atributo que es otro objeto que tiene otro objeto
+			Mediante ref hacemos referencia al bean pais que tiene una ref al bean ciudad-->
+	<bean id="persona" class="com.projectone.beans.Persona">
+		<property name="pais" ref="pais"></property>
+		<property name="id" value="1"></property>
+		<property name="nombre" value="Christofer"></property>
+		<property name="apodo" value="Tifo"></property>
+	</bean>
+	
+	<bean id="pais" class="com.projectone.beans.Pais">
+		<property name="nombre" value="Costa Rica"></property>
+		<property name="ciudad" ref="ciudad"></property>
+	</bean>
+	<bean id="ciudad" class="com.projectone.beans.Ciudad">
+		<property name="nombre" value="San Jose"></property>
+	</bean>
+	
+
+</beans>
