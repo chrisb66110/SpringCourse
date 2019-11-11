@@ -81,18 +81,57 @@ public class App {
 			System.out.println(per.getId() + " " + per.getNombre() + " " + per.getApodo() + " " + per.getPais().getNombre());
 			
 			((ConfigurableApplicationContext)appContext).close();
-		*/
+			 */
+		
+		
+		
 		
 		/*
 		 * Persona con atributo objeto Pais que tiene un atributo objeto Ciudad
 		 * 
 		 * */
+			/*
+			 * Ejemplo de inyeccion de dependencias de objetos
+			 * 
+			 * */
+			/*
+			ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+			Persona per = (Persona) appContext.getBean("persona");
+			System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudad: " + per.getPais().getCiudad().getNombre());
+			
+			((ConfigurableApplicationContext)appContext).close();
+			*/
+		
+		
+		
 		/*
-		 * Ejemplo de inyeccion de dependencias de objetos
+		 * Referenciando Beans mediante alisas mediante el <alias> en el XML
+ 		 * 
+		 * */
+			/*
+			 * Ejemplo de alias
+			 * 
+			 * */
+			/*
+			ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+			Persona per = (Persona) appContext.getBean("personaBean");//Uso el alias
+			System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudad: " + per.getPais().getCiudad().getNombre());
+			
+			((ConfigurableApplicationContext)appContext).close();
+			*/
+		
+		
+		
+		/*
+		 * Referenciando Beans mediante alisas mediante el tag name en <bean> en el XML
+ 		 * 
+		 * */
+		/*
+		 * Ejemplo de tag name en <bean>
 		 * 
 		 * */
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
-		Persona per = (Persona) appContext.getBean("persona");
+		Persona per = (Persona) appContext.getBean("personaBean2");//Uso el name del <bean>
 		System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudad: " + per.getPais().getCiudad().getNombre());
 		
 		((ConfigurableApplicationContext)appContext).close();
