@@ -53,7 +53,7 @@
 	-->
 	
 	<!-- Prueba de Persona con un atributo que es otro objeto que tiene otro objeto
-			Mediante ref hacemos referencia al bean pais que tiene una ref al bean ciudad-->
+			Mediante ref hacemos referencia al bean pais que tiene una ref al bean ciudad
 	<bean id="persona" class="com.projectone.beans.Persona">
 		<property name="pais" ref="pais"></property>
 		<property name="id" value="1"></property>
@@ -68,6 +68,27 @@
 	<bean id="ciudad" class="com.projectone.beans.Ciudad">
 		<property name="nombre" value="San Jose"></property>
 	</bean>
+	-->
+	
+	<!-- Prueba de Persona con un atributo que es otro objeto que tiene otro objeto
+			Mediante ref hacemos referencia al bean pais que tiene una ref al bean ciudad
+			Declaracion anidada-->
+	<bean id="persona" class="com.projectone.beans.Persona">
+		<property name="pais">
+			<bean id="pais" class="com.projectone.beans.Pais">
+				<property name="nombre" value="Costa Rica"></property>
+				<property name="ciudad">
+					<bean id="ciudad" class="com.projectone.beans.Ciudad">
+						<property name="nombre" value="San Jose"></property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+		<property name="id" value="1"></property>
+		<property name="nombre" value="Christofer"></property>
+		<property name="apodo" value="Tifo"></property>
+	</bean>
+	
 	
 
 </beans>
