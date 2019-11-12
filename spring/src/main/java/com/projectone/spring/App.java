@@ -179,6 +179,9 @@ public class App {
 		 * Ejemplo de scope 
 		 * 					-singleton, usando <bean scope="singleton" en el xml>, por defecto en el xml
 		 * 					-prototype, usando <bean scope="prototype" en el xml>
+		 * 
+		 * 		Si se usa
+		 * 			<bean lazy-init="true">: indica que el appContext no se cargan los beans inmediatamente, sino hasta que se pidan con appContext.getBean
  		 * 
 		 * */
 		//Bean inicial
