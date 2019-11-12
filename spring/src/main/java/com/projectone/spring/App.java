@@ -168,18 +168,34 @@ public class App {
 		 * Usa de AutoWire
  		 * 
 		 * */
-		/*
-		 * 
-		 * 
-		 * */
-		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
-		Persona per = (Persona) appContext.getBean("persona");
-		/*String nombresCiudades = "\t";
-		for(Ciudad ciudad : per.getPais().getCiudades()) {
-			nombresCiudades += ciudad.getNombre() + "\n\t";
-		}*/
+			/*
+			ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+			Persona per = (Persona) appContext.getBean("persona");
+			System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudad: " + per.getCiudad().getNombre() );
+			((ConfigurableApplicationContext)appContext).close();
+			*/
 		
+		/*
+		 * Ejemplo de scope 
+		 * 					-singleton, usando <bean scope="singleton" en el xml>, por defecto en el xml
+		 * 					-prototype, usando <bean scope="prototype" en el xml>
+ 		 * 
+		 * */
+		//Bean inicial
+		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+		Persona per = (Persona) appContext.getBean("persona");		
 		System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudad: " + per.getCiudad().getNombre() );
+		//Se le modifica el nombre de la ciudad al bean inicial
+		per.setNombre("NombreNuevo");
+		per.getCiudad().setNombre("CiudadNueva");
+		System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudad: " + per.getCiudad().getNombre() );
+		//Bean 2, usando <bean scope="singleton" en el xml>, que tiene la misma informacion del bean inicial pues es singleton
+		//Bean 2, usando <bean scope="prototype" en el xml>, que tiene informacion distinta del bean inicial pues es una instancia distinta
+		Persona per2 = (Persona) appContext.getBean("persona");		
+		System.out.println("Id: " + per2.getId() + "\nNombre: " + per2.getNombre() + "\nApodo: " + per2.getApodo() + "\nPais: " + per2.getPais().getNombre() + "\nCiudad: " + per2.getCiudad().getNombre() );
+		
+		
+		
 		
 		((ConfigurableApplicationContext)appContext).close();
 	}

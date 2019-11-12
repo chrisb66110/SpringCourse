@@ -161,7 +161,7 @@
 				OJO si tenemos varios <bean> del mismo tipo, va a dar error porque no sabe que tipo
 			-autowire="constructor": sirve para olvidarnos de los property objetos de este <bean>
 			    Hay que definir un constructor en los <bean> con los parametros que necesitamos
-	-->
+	
 	<bean id="persona" class="com.projectone.beans.Persona" name="persona" autowire="byType">
 		<property name="id" value="1"></property>
 		<property name="nombre" value="Christofer"></property>
@@ -173,6 +173,29 @@
 	</bean>
 	
 	<bean id="ciudad" class="com.projectone.beans.Ciudad">
+		<property name="nombre" value="San José"></property>
+	</bean>
+	-->
+	
+	
+	
+	<!-- Prueba 
+		Scopes:
+			-Singleton: misma instancia siempre, usando scope="singleton", singleton es por defecto
+			-Prototype: distinta instacia siempre, usando scope="prototype"
+
+	-->
+	<bean id="persona" class="com.projectone.beans.Persona" name="persona" autowire="byName" scope="prototype">
+		<property name="id" value="1"></property>
+		<property name="nombre" value="Christofer"></property>
+		<property name="apodo" value="Tifo"></property>
+	</bean>
+	
+	<bean id="pais" class="com.projectone.beans.Pais">
+		<property name="nombre" value="Costa Rica"></property>
+	</bean>
+	
+	<bean id="ciudad" class="com.projectone.beans.Ciudad" scope="prototype">
 		<property name="nombre" value="San José"></property>
 	</bean>
 	
