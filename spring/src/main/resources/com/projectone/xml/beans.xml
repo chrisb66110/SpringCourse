@@ -118,7 +118,7 @@
 	
 	
 	<!-- Prueba de bean con atributo que es una coleccion 
-			Usando el <list> y <ref>-->
+			Usando el <list> y <ref>
 	<bean id="persona" class="com.projectone.beans.Persona" name="personaBean2">
 		<property name="pais" ref="pais"></property>
 		<property name="id" value="1"></property>
@@ -148,5 +148,34 @@
 	<bean id="ciudad3" class="com.projectone.beans.Ciudad">
 		<property name="nombre" value="Cartago"></property>
 	</bean>
+	-->
+	
+	<!-- Prueba con autowire
+			-autowire="byName": sirve para olvidarnos de los property objetos de este <bean> 
+				y lo que hace es asignarlos dependiendo de:
+					-name del <bean> <-> el nombre del atributo a asignarlo
+			-autowire="byType": sirve para olvidarnos de los property objetos de este <bean>
+				y lo que hace es asignarlos dependiendo de.
+					-type del <bean> <-> tipo del atributo a asignarlo
+					
+				OJO si tenemos varios <bean> del mismo tipo, va a dar error porque no sabe que tipo
+			-autowire="constructor": sirve para olvidarnos de los property objetos de este <bean>
+			    Hay que definir un constructor en los <bean> con los parametros que necesitamos
+	-->
+	<bean id="persona" class="com.projectone.beans.Persona" name="persona" autowire="byType">
+		<property name="id" value="1"></property>
+		<property name="nombre" value="Christofer"></property>
+		<property name="apodo" value="Tifo"></property>
+	</bean>
+	
+	<bean id="pais" class="com.projectone.beans.Pais">
+		<property name="nombre" value="Costa Rica"></property>
+	</bean>
+	
+	<bean id="ciudad" class="com.projectone.beans.Ciudad">
+		<property name="nombre" value="San José"></property>
+	</bean>
+	
+	
 
 </beans>

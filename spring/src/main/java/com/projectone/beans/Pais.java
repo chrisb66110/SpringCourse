@@ -1,10 +1,14 @@
 package com.projectone.beans;
 
+/*
 import java.util.List;
+*/
 
 public class Pais {
 	
 	private String nombre;
+	
+	/*
 	private List<Ciudad> ciudades;
 
 	public List<Ciudad> getCiudades() {
@@ -13,7 +17,7 @@ public class Pais {
 
 	public void setCiudades(List<Ciudad> ciudades) {
 		this.ciudades = ciudades;
-	}
+	}*/
 
 	public String getNombre() {
 		return nombre;

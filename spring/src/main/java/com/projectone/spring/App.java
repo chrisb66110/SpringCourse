@@ -145,18 +145,41 @@ public class App {
 		 * Referenciando Beans con atributo que es una coleccion
  		 * 
 		 * */
+			/*
+			 * Ejemplo de declaracion de colecciones de un bean en el xml y aqui se muestran
+			 * 
+			 * */
+			/*
+			ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+			Persona per = (Persona) appContext.getBean("personaBean2");
+			String nombresCiudades = "\t";
+			for(Ciudad ciudad : per.getPais().getCiudades()) {
+				nombresCiudades += ciudad.getNombre() + "\n\t";
+			}
+			
+			System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudades:\n" + nombresCiudades);
+			
+			((ConfigurableApplicationContext)appContext).close();
+			*/
+		
+		
+		
 		/*
-		 * Ejemplo de declaracion de colecciones de un bean en el xml y aqui se muestran
+		 * Usa de AutoWire
+ 		 * 
+		 * */
+		/*
+		 * 
 		 * 
 		 * */
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
-		Persona per = (Persona) appContext.getBean("personaBean2");
-		String nombresCiudades = "\t";
+		Persona per = (Persona) appContext.getBean("persona");
+		/*String nombresCiudades = "\t";
 		for(Ciudad ciudad : per.getPais().getCiudades()) {
 			nombresCiudades += ciudad.getNombre() + "\n\t";
-		}
+		}*/
 		
-		System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudades:\n" + nombresCiudades);
+		System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudad: " + per.getCiudad().getNombre() );
 		
 		((ConfigurableApplicationContext)appContext).close();
 	}
