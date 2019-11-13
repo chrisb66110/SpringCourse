@@ -1,5 +1,8 @@
 package com.projectone.beans;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 public class Persona {
 	
 	private int id;
@@ -10,14 +13,22 @@ public class Persona {
 	
 	/*
 	 * Metodo antes de iniciar el bean, puede ser cualquier nombre
+	 * 		Mediante:
+	 * 			-xml
+	 * 			-anotaciones en esta clase
 	 * */
+	@PostConstruct
 	private void init() {
 		System.out.println("Antes de inicializar el bean Persona: " + nombre);
 	}
 	
 	/*
 	 * Metodo antes eliminar el bean, puede ser cualquier nombre
+	 *		Mediante:
+	 * 			-xml
+	 * 			-anotaciones en esta clase
 	 * */
+	@PreDestroy
 	private void destroy() {
 		System.out.println("Antes de eliminar el bean Persona: " + nombre);
 	}

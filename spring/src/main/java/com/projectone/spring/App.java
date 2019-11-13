@@ -197,16 +197,34 @@ public class App {
 			//Bean 2, usando <bean scope="prototype" en el xml>, que tiene informacion distinta del bean inicial pues es una instancia distinta
 			Persona per2 = (Persona) appContext.getBean("persona");		
 			System.out.println("Id: " + per2.getId() + "\nNombre: " + per2.getNombre() + "\nApodo: " + per2.getApodo() + "\nPais: " + per2.getPais().getNombre() + "\nCiudad: " + per2.getCiudad().getNombre() );
-			//OJO QUE SI NO CIERRA EL APPCONTEXT NO SE ELIMINAN LOS BEANS
+			
 			((ConfigurableApplicationContext)appContext).close();
 			*/
 		
 		/*
-		 * Ciclo de vida de los Beans(TODOS)
+		 * Ciclo de vida de los Beans(TODOS), mediante el xml
 		 * 		En el XML se especifican los metodos init y destroy mediante
 		 * 			Antes de inciar: <beans ....  default-init-method="init">
 		 *			Antes de eliminar: <beans ....  default-destroy-method="destroy">
 		 *			El nombre d elos metodos en la clase no importan porque solo se especifican en el xml
+		 * */
+		/*
+		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+		Persona per = (Persona) appContext.getBean("persona");		
+		System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudad: " + per.getCiudad().getNombre() );
+		
+		//OJO QUE SI NO CIERRA EL APPCONTEXT NO SE ELIMINAN LOS BEANS
+		((ConfigurableApplicationContext)appContext).close();
+		*/
+		
+		
+		/*
+		 * Ciclo de vida de los Beans(TODOS), mediante anotaciones
+		 * 		Se hace mediante las anotaciones en las clases:
+		 *			Antes de inciar: @PostConstruct
+		 *			Antes de eliminar: @PreDestroy
+		 *		Y el bean para que la anotaciones sean reconocidas en el xml de:
+		 *			<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"></bean>
 		 * */
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
 		Persona per = (Persona) appContext.getBean("persona");		

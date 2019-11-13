@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
-	default-init-method="init" default-destroy-method="destroy">
-
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<!-- Prueba de Mundo
 	<bean id="mundo" class="com.projectone.beans.Mundo">
 		<property name="saludo" value="Hola Mundo!"></property>
@@ -219,7 +217,7 @@
 	</bean>
 	-->
 	
-	<!-- Ciclo de vida de los beans
+	<!-- Ciclo de vida de los beans, mediante tags en cada bean
 			Antes de inciar: <bean ....  init-method="init">
 			Antes de eliminar: <bean ....  destroy-method="destroy">
 	
@@ -238,11 +236,35 @@
 	</bean>
 	-->
 	
-	<!-- Ciclo de vida de los beans de modo general(para todos)
+	<!-- Ciclo de vida de los beans de modo general(para todos), mediante tags en todos los beans
 			Se hace en el tag <beans> OJO beanS
 			Antes de inciar: <beans ....  default-init-method="init">
 			Antes de eliminar: <beans ....  default-destroy-method="destroy">
+	
+	<bean id="persona" class="com.projectone.beans.Persona" name="persona" autowire="byName">
+		<property name="id" value="1"></property>
+		<property name="nombre" value="Christofer"></property>
+		<property name="apodo" value="Tifo"></property>
+	</bean>
+	
+	<bean id="pais" class="com.projectone.beans.Pais">
+		<property name="nombre" value="Costa Rica"></property>
+	</bean>
+	
+	<bean id="ciudad" class="com.projectone.beans.Ciudad">
+		<property name="nombre" value="San José"></property>
+	</bean>
 	-->
+	
+	<!-- Ciclo de vida de los beans mediante anotaciones en las clases
+			Se hace mediante las anotaciones en las clases:
+				Antes de inciar: @PostConstruct
+				Antes de eliminar: @PreDestroy
+			Y el bean para que la anotaciones sean reconocidas en este xml de:
+				<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"></bean>
+	-->
+	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"></bean>
+	
 	<bean id="persona" class="com.projectone.beans.Persona" name="persona" autowire="byName">
 		<property name="id" value="1"></property>
 		<property name="nombre" value="Christofer"></property>
