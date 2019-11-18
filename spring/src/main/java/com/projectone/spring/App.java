@@ -1,5 +1,7 @@
 package com.projectone.spring;
 
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -225,6 +227,21 @@ public class App {
 		 *			Antes de eliminar: @PreDestroy
 		 *		Y el bean para que la anotaciones sean reconocidas en el xml de:
 		 *			<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"></bean>
+		 * */
+			/*
+			ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+			Persona per = (Persona) appContext.getBean("persona");		
+			System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudad: " + per.getCiudad().getNombre() );
+			
+			//OJO QUE SI NO CIERRA EL APPCONTEXT NO SE ELIMINAN LOS BEANS
+			((ConfigurableApplicationContext)appContext).close();
+			*/
+		
+		/*
+		 * Ciclo de vida de los Beans(Interfaces)
+		 * 		Implementado la interfaces en cada bean
+		 * 			-InitializingBean: metodo afterPropertiesSet
+		 *			-DisposableBean: destroy
 		 * */
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
 		Persona per = (Persona) appContext.getBean("persona");		

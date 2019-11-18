@@ -262,8 +262,28 @@
 				Antes de eliminar: @PreDestroy
 			Y el bean para que la anotaciones sean reconocidas en este xml de:
 				<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"></bean>
-	-->
+	
 	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"></bean>
+	
+	<bean id="persona" class="com.projectone.beans.Persona" name="persona" autowire="byName">
+		<property name="id" value="1"></property>
+		<property name="nombre" value="Christofer"></property>
+		<property name="apodo" value="Tifo"></property>
+	</bean>
+	
+	<bean id="pais" class="com.projectone.beans.Pais">
+		<property name="nombre" value="Costa Rica"></property>
+	</bean>
+	
+	<bean id="ciudad" class="com.projectone.beans.Ciudad">
+		<property name="nombre" value="San José"></property>
+	</bean>
+	-->
+	
+	
+	
+	<!-- Ciclo de vida de los beans(Interfaces)	
+	-->
 	
 	<bean id="persona" class="com.projectone.beans.Persona" name="persona" autowire="byName">
 		<property name="id" value="1"></property>

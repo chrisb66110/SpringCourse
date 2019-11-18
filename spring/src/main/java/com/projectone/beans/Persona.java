@@ -3,7 +3,10 @@ package com.projectone.beans;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-public class Persona {
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+
+public class Persona implements InitializingBean, DisposableBean{
 	
 	private int id;
 	private String nombre;
@@ -17,10 +20,12 @@ public class Persona {
 	 * 			-xml
 	 * 			-anotaciones en esta clase
 	 * */
+	/*
 	@PostConstruct
 	private void init() {
 		System.out.println("Antes de inicializar el bean Persona: " + nombre);
 	}
+	*/
 	
 	/*
 	 * Metodo antes eliminar el bean, puede ser cualquier nombre
@@ -28,11 +33,12 @@ public class Persona {
 	 * 			-xml
 	 * 			-anotaciones en esta clase
 	 * */
+	/*
 	@PreDestroy
 	private void destroy() {
 		System.out.println("Antes de eliminar el bean Persona: " + nombre);
 	}
-	
+	*/
 
 	public Ciudad getCiudad() {
 		return ciudad;
@@ -72,6 +78,22 @@ public class Persona {
 	
 	public void setApodo(String apodo) {
 		this.apodo = apodo;
+	}
+
+	/*
+	 * Metodo que se hace cuando se implementa la interfaz InitializingBean
+	 * 		Es como el PostConstruct pero mediante interfaces
+	 * */
+	public void afterPropertiesSet() throws Exception {
+		System.out.println("Antes de inicializar el bean Persona: " + nombre);
+	}
+
+	/*
+	 * Metodo que se hace cuando se implementa la interfaz DisposableBean
+	 * 		Es como el PreDestroy pero mediante interfaces
+	 * */
+	public void destroy() throws Exception {
+		System.out.println("Antes de eliminar el bean Persona: " + nombre);
 	}
 	
 }
