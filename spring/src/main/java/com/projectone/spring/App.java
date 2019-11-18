@@ -243,6 +243,20 @@ public class App {
 		 * 			-InitializingBean: metodo afterPropertiesSet
 		 *			-DisposableBean: destroy
 		 * */
+		/*
+		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+		Persona per = (Persona) appContext.getBean("persona");		
+		System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudad: " + per.getCiudad().getNombre() );
+		
+		//OJO QUE SI NO CIERRA EL APPCONTEXT NO SE ELIMINAN LOS BEANS
+		((ConfigurableApplicationContext)appContext).close();
+		*/
+		
+		
+		/*
+		 * BeanPostProcessor
+		 * 		Creando la clae ExampleBeanPostProcessor
+		 * */
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
 		Persona per = (Persona) appContext.getBean("persona");		
 		System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudad: " + per.getCiudad().getNombre() );

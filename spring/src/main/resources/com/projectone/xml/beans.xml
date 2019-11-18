@@ -283,7 +283,33 @@
 	
 	
 	<!-- Ciclo de vida de los beans(Interfaces)	
+		Implementado la interfaces en cada bean
+		 -InitializingBean: metodo afterPropertiesSet
+		 -DisposableBean: destroy
+	
+	
+	<bean id="persona" class="com.projectone.beans.Persona" name="persona" autowire="byName">
+		<property name="id" value="1"></property>
+		<property name="nombre" value="Christofer"></property>
+		<property name="apodo" value="Tifo"></property>
+	</bean>
+	
+	<bean id="pais" class="com.projectone.beans.Pais">
+		<property name="nombre" value="Costa Rica"></property>
+	</bean>
+	
+	<bean id="ciudad" class="com.projectone.beans.Ciudad">
+		<property name="nombre" value="San José"></property>
+	</bean>
 	-->
+	
+	<!-- BeanPostProcessor
+			Creando la clae ExampleBeanPostProcessor
+			Y en este archivo hacemos el bean del processor
+				<bean class="com.projectone.beans.ExampleBeanPostProcessor"></bean>
+	-->
+	
+	<bean class="com.projectone.beans.ExampleBeanPostProcessor"></bean>
 	
 	<bean id="persona" class="com.projectone.beans.Persona" name="persona" autowire="byName">
 		<property name="id" value="1"></property>
