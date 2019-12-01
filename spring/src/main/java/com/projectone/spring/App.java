@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
 import com.projectone.beans.Barcelona;
 import com.projectone.beans.Ciudad;
@@ -350,6 +351,54 @@ public class App {
 		 *							http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd"
 		 * 	Para reconocer cualquier anotacion que sea bajo spring se debe poner el siguiente tag en el xml
 		 *	<context:annotation-config/>
+		 * */
+			/*
+			ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+			Jugador jug = (Jugador) appContext.getBean("messi");
+			
+			System.out.println("Nombre: "+jug.getNombre() + "\nEquipo: " + jug.getEquipo().mostrar());
+		
+			((ConfigurableApplicationContext)appContext).close();
+			*/
+		
+		
+		
+		
+		
+		/*
+		 * 	Stereotypes
+ 		 *		@Component:
+ 		 *			Se especifica en la clase
+ 		 *			Indica que es un bean generico
+ 		 *			Hace lo mismo que hacer en el xml lo siguiente
+ 		 *				<bean id="messi" class="com.projectone.beans.Jugador"></bean>
+ 		 *			Necesita el tag en el xml
+ 		 *				<context:component-scan base-package="paquete donde estan los componentes"></context:component-scan>
+ 		 *					Esto detecta los beans en el paquete
+ 		 *			Para llamar este bean hay que llamarlo mediante
+ 		 *				appContext.getBean("nombreclaseminuscula");
+ 		 *			Si tenemos un autowired en la clase y la clase que se referencia es un @Component
+ 		 *				Se añade la referencia al atributo automaticamente
+ 		 *			Cada @Component es como definir un bean en el xml
+ 		 *			Si le quiero poner un nombre al componente uso:
+ 		 *				@Component("nombre")
+ 		 *		
+ 		 *		@Value
+ 		 *			Se especifica en un atributo en la clase
+ 		 *			Le da valor a un atributo de la clase
+ 		 *		
+ 		 *		@Repository
+ 		 *			Se especifica en la clase
+ 		 *			Indica que es un bean generico, y que es un repostorio
+ 		 *
+ 		 *		@Controller
+ 		 *			Se especifica en la clase
+ 		 *			Indica que es un bean generico y que es un controlador
+ 		 *
+ 		 *		@Service
+ 		 *			Se especifica en la clase
+ 		 *			Indica que es un bean generico y que es un servicio
+ 		 *		
 		 * */
 		
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");

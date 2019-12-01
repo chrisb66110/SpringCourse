@@ -387,13 +387,12 @@
 									http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd"
 		Para reconocer cualquier anotacion que sea bajo spring se debe poner el siguiente tag en el xml
 			<context:annotation-config/>
-	-->
+	
 	<context:annotation-config/>
 	
 	<bean id="messi" class="com.projectone.beans.Jugador">
 		<property name="numero" value="10"></property>
 		<property name="nombre" value="Leonel Messi"></property>
-		<!--<property name="equipo" ref="juventus"></property>-->
 	</bean>
 	
 	<bean id="barcelona" class="com.projectone.beans.Barcelona">
@@ -403,6 +402,43 @@
 	<bean id="juventus" class="com.projectone.beans.Juventus"></bean>
 	
 	<bean id="equipo" class="com.projectone.beans.Juventus"></bean>
+	-->
 	
+	<!-- Stereotypes
+ 		 		@Component:
+ 		 			Se especifica en la clase
+ 		 			Indica que es un bean generico
+ 		 			Hace lo mismo que hacer en el xml lo siguiente
+ 		 				<bean id="messi" class="com.projectone.beans.Jugador"></bean>
+ 		 			Necesita el tag en el xml
+ 		 				<context:component-scan base-package="paquete donde estan los componentes"></context:component-scan>
+ 		 					Esto detecta los beans en el paquete
+ 		 			Para llamar este bean hay que llamarlo mediante
+ 		 				appContext.getBean("nombreclaseminuscula");
+ 		 			Si tenemos un autowired en la clase y la clase que se referencia es un @Component
+ 		 				Se añade la referencia al atributo automaticamente
+ 		 			Cada @Component es como definir un bean en el xml
+ 		 			Si le quiero poner un nombre al componente uso:
+ 		 				@Component("nombre")
+ 		 	
+ 		 		@Value
+ 		 			Se especifica en un atributo en la clase
+ 		 			Le da valor a un atributo de la clase
+ 		 		
+ 		 		@Repository
+ 		 			Se especifica en la clase
+ 		 			Indica que es un bean generico, y que es un repostorio
+ 		 
+ 		 		@Controller
+ 		 			Se especifica en la clase
+ 		 			Indica que es un bean generico y que es un controlador
+ 		 
+ 		 		@Service
+ 		 			Se especifica en la clase
+ 		 			Indica que es un bean generico y que es un servicio
+	-->
+	<context:annotation-config/>
+	
+	<context:component-scan base-package="com.projectone"></context:component-scan>
 
 </beans>

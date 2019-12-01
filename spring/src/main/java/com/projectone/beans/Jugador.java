@@ -3,17 +3,21 @@ package com.projectone.beans;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import com.projectone.interfaces.IEquipo;
 
+@Component("messi")
 public class Jugador {
 	
 	private int numero;
 	
+	@Value("Leonel Messi")
 	private String nombre;
 	
 	@Autowired
-	@Qualifier("barcelonaQualifier")
+	//@Qualifier("barcelonaQualifier")
 	private IEquipo equipo;
 	
 	public int getNumero() {
