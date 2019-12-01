@@ -327,6 +327,8 @@
 	</bean>
 	-->
 	
+	<!-- Interfaces con java y spring
+	-->
 	<bean id="messi" class="com.projectone.beans.Jugador">
 		<property name="numero" value="10"></property>
 		<property name="nombre" value="Leonel Messi"></property>

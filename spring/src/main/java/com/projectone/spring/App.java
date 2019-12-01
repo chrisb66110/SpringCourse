@@ -7,10 +7,13 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.projectone.beans.Barcelona;
 import com.projectone.beans.Ciudad;
 import com.projectone.beans.Jugador;
+import com.projectone.beans.Juventus;
 import com.projectone.beans.Mundo;
 import com.projectone.beans.Persona;
+import com.projectone.interfaces.IEquipo;
 
 public class App {
 
@@ -267,13 +270,40 @@ public class App {
 			((ConfigurableApplicationContext)appContext).close();
 		*/
 		
+		/*
+		 * Interfaces
+		 * 		Mediante java normal
+		 * */
+		/*
+			ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+			Jugador jug = (Jugador) appContext.getBean("messi");
+			
+			System.out.println("Nombre: "+jug.getNombre() + "\nEquipo: " + jug.getEquipo().mostrar());
 		
+			((ConfigurableApplicationContext)appContext).close();
+		*/
+		
+		
+		/*
+		 * Interfaces
+		 * 		Mediante spring
+		 * */
+	
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
-		Jugador jug = (Jugador) appContext.getBean("messi");
 		
-		System.out.println("Nombre: "+jug.getNombre() + "\nEquipo: " + jug.getEquipo().mostrar());
+		// A para cada tipo de equipo
+		Barcelona bar = (Barcelona) appContext.getBean("barcelona");
+		System.out.println("Clase Barcelona - Nombre: "+bar.mostrar());
+		Juventus juv = (Juventus) appContext.getBean("juventus");
+		System.out.println("Clase Juventus - Nombre: "+juv.mostrar());
+		//Mediante interfaces en la misma variable
+		IEquipo equipo = (IEquipo) appContext.getBean("barcelona");
+		System.out.println("Interfaz IEquipo - Nombre: "+equipo.mostrar());
+		equipo = (IEquipo) appContext.getBean("juventus");
+		System.out.println("Interfaz IEquipo - Nombre: "+equipo.mostrar());
 	
 		((ConfigurableApplicationContext)appContext).close();
+		
 	}
 
 }
