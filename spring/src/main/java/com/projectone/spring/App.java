@@ -8,6 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.projectone.beans.Ciudad;
+import com.projectone.beans.Jugador;
 import com.projectone.beans.Mundo;
 import com.projectone.beans.Persona;
 
@@ -257,16 +258,22 @@ public class App {
 		 * BeanPostProcessor
 		 * 		Creando la clae ExampleBeanPostProcessor
 		 * */
-		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
-		Persona per = (Persona) appContext.getBean("persona");		
-		System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudad: " + per.getCiudad().getNombre() );
+		/*
+			ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+			Persona per = (Persona) appContext.getBean("persona");		
+			System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudad: " + per.getCiudad().getNombre() );
+			
+			//OJO QUE SI NO CIERRA EL APPCONTEXT NO SE ELIMINAN LOS BEANS
+			((ConfigurableApplicationContext)appContext).close();
+		*/
 		
-		//OJO QUE SI NO CIERRA EL APPCONTEXT NO SE ELIMINAN LOS BEANS
+		
+		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+		Jugador jug = (Jugador) appContext.getBean("messi");
+		
+		System.out.println("Nombre: "+jug.getNombre() + "\nEquipo: " + jug.getEquipo().mostrar());
+	
 		((ConfigurableApplicationContext)appContext).close();
-	
-	
-	
-	
 	}
 
 }

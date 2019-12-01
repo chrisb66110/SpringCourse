@@ -309,6 +309,7 @@
 				<bean class="com.projectone.beans.ExampleBeanPostProcessor"></bean>
 	-->
 	
+	<!-- BeanPostProcessor
 	<bean class="com.projectone.beans.ExampleBeanPostProcessor"></bean>
 	
 	<bean id="persona" class="com.projectone.beans.Persona" name="persona" autowire="byName">
@@ -324,7 +325,17 @@
 	<bean id="ciudad" class="com.projectone.beans.Ciudad">
 		<property name="nombre" value="San José"></property>
 	</bean>
+	-->
 	
+	<bean id="messi" class="com.projectone.beans.Jugador">
+		<property name="numero" value="10"></property>
+		<property name="nombre" value="Leonel Messi"></property>
+		<property name="equipo" ref="barcelona"></property>
+	</bean>
+	
+	<bean id="barcelona" class="com.projectone.beans.Barcelona"></bean>
+	
+	<bean id="juventus" class="com.projectone.beans.Juventus"></bean>
 	
 
 </beans>
