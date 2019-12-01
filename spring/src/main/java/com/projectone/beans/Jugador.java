@@ -1,50 +1,47 @@
 package com.projectone.beans;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
 import com.projectone.interfaces.IEquipo;
 
-@Component("messi")
 public class Jugador {
 	
-	private int numero;
+	private int id;
 	
-	@Value("Leonel Messi")
 	private String nombre;
 	
-	@Autowired
-	//@Qualifier("barcelonaQualifier")
 	private IEquipo equipo;
 	
-	public int getNumero() {
-		return numero;
+	private Camiseta camiseta;
+
+	public int getId() {
+		return id;
 	}
-	
-	public void setNumero(int numero) {
-		this.numero = numero;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
-	
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public IEquipo getEquipo() {
 		return equipo;
 	}
-	
-	//@Required //esta anotacion va en el metodo set del atributo
+
 	public void setEquipo(IEquipo equipo) {
 		this.equipo = equipo;
 	}
-	
-	
 
+	public Camiseta getCamiseta() {
+		return camiseta;
+	}
+
+	public void setCamiseta(Camiseta camiseta) {
+		this.camiseta = camiseta;
+	}
+	
 }

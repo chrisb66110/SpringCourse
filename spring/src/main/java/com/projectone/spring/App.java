@@ -1,5 +1,7 @@
 package com.projectone.spring;
 
+import java.util.Scanner;
+
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
@@ -400,14 +402,47 @@ public class App {
  		 *			Indica que es un bean generico y que es un servicio
  		 *		
 		 * */
+			/*
+			ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+			Jugador jug = (Jugador) appContext.getBean("messi");
+			
+			System.out.println("Nombre: "+jug.getNombre() + "\nEquipo: " + jug.getEquipo().mostrar());
+		
+			((ConfigurableApplicationContext)appContext).close();
+			*/
+		
+		/*
+		 * Ejercicio XML puro
+		 * */
+		
+		System.out.println("Equipos: \n1 -> Barcelona \n2 -> Juventus\n\nElija un equipo:");
+		
+		Scanner sc = new Scanner(System.in);
+		int respuesta = sc.nextInt();
+		
+		String equipo = "";
+		switch(respuesta) {
+			case 1:
+				equipo = "barcelona";
+				break;
+			case 2:
+				equipo = "juventus";
+				break;
+			default:
+				break;
+		}
+		
 		
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
-		Jugador jug = (Jugador) appContext.getBean("messi");
+		Jugador jug = (Jugador) appContext.getBean("jugador1");
+		jug.setEquipo( (IEquipo) appContext.getBean(equipo) );
 		
-		System.out.println("Nombre: "+jug.getNombre() + "\nEquipo: " + jug.getEquipo().mostrar());
+		System.out.println( "Nombre: "+jug.getNombre() + 
+							"\nEquipo: " + jug.getEquipo().mostrar() +
+							"\nCamiseta: " + jug.getCamiseta().getNumero() +
+							"\nMarca: " + jug.getCamiseta().getMarca().getNombre());
 	
 		((ConfigurableApplicationContext)appContext).close();
-		
 	}
 
 }

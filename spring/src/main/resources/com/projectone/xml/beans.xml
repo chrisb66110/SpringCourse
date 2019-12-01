@@ -436,9 +436,54 @@
  		 		@Service
  		 			Se especifica en la clase
  		 			Indica que es un bean generico y que es un servicio
-	-->
+	
 	<context:annotation-config/>
 	
 	<context:component-scan base-package="com.projectone"></context:component-scan>
-
+	-->
+	
+	<!-- Ejercicio XML puro
+	-->
+	<bean id="jugador1" class="com.projectone.beans.Jugador">
+		<property name="id" value="1"></property>
+		<property name="nombre" value="jugador1"></property>
+		<property name="equipo" ref="barcelona"></property>
+		<property name="camiseta" ref="camiseta"></property>
+	</bean>
+	
+	<bean  id="barcelona" class="com.projectone.beans.Barcelona">
+	</bean>
+	
+	<bean  id="juventus" class="com.projectone.beans.Juventus">
+	</bean>
+	
+	<bean  id="camiseta" class="com.projectone.beans.Camiseta">
+		<property name="id" value="1"></property>
+		<property name="numero" value="10"></property>
+		<property name="marca" ref="marca1"></property>
+	</bean>
+	
+	<bean  id="marca1" class="com.projectone.beans.Marca">
+		<property name="id" value="1"></property>
+		<property name="nombre" value="Marca 1"></property>
+	</bean>
+	
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
