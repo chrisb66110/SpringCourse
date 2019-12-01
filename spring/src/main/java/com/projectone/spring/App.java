@@ -247,72 +247,109 @@ public class App {
 		 * 			-InitializingBean: metodo afterPropertiesSet
 		 *			-DisposableBean: destroy
 		 * */
-		/*
-		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
-		Persona per = (Persona) appContext.getBean("persona");		
-		System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudad: " + per.getCiudad().getNombre() );
-		
-		//OJO QUE SI NO CIERRA EL APPCONTEXT NO SE ELIMINAN LOS BEANS
-		((ConfigurableApplicationContext)appContext).close();
-		*/
-		
-		
-		/*
-		 * BeanPostProcessor
-		 * 		Creando la clae ExampleBeanPostProcessor
-		 * */
-		/*
+			/*
 			ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
 			Persona per = (Persona) appContext.getBean("persona");		
 			System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudad: " + per.getCiudad().getNombre() );
 			
 			//OJO QUE SI NO CIERRA EL APPCONTEXT NO SE ELIMINAN LOS BEANS
 			((ConfigurableApplicationContext)appContext).close();
-		*/
+			*/
+		
+		
+		/*
+		 * BeanPostProcessor
+		 * 		Creando la clae ExampleBeanPostProcessor
+		 * */
+			/*
+				ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+				Persona per = (Persona) appContext.getBean("persona");		
+				System.out.println("Id: " + per.getId() + "\nNombre: " + per.getNombre() + "\nApodo: " + per.getApodo() + "\nPais: " + per.getPais().getNombre() + "\nCiudad: " + per.getCiudad().getNombre() );
+				
+				//OJO QUE SI NO CIERRA EL APPCONTEXT NO SE ELIMINAN LOS BEANS
+				((ConfigurableApplicationContext)appContext).close();
+			*/
 		
 		/*
 		 * Interfaces
 		 * 		Mediante java normal
 		 * */
-		/*
-			ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
-			Jugador jug = (Jugador) appContext.getBean("messi");
+			/*
+				ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+				Jugador jug = (Jugador) appContext.getBean("messi");
+				
+				System.out.println("Nombre: "+jug.getNombre() + "\nEquipo: " + jug.getEquipo().mostrar());
 			
-			System.out.println("Nombre: "+jug.getNombre() + "\nEquipo: " + jug.getEquipo().mostrar());
-		
-			((ConfigurableApplicationContext)appContext).close();
-		*/
+				((ConfigurableApplicationContext)appContext).close();
+			*/
 		
 		
 		/*
 		 * Interfaces
 		 * 		Mediante spring
 		 * */
-		/*
-		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+			/*
+			ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+			
+			// A para cada tipo de equipo
+			Barcelona bar = (Barcelona) appContext.getBean("barcelona");
+			System.out.println("Clase Barcelona - Nombre: "+bar.mostrar());
+			Juventus juv = (Juventus) appContext.getBean("juventus");
+			System.out.println("Clase Juventus - Nombre: "+juv.mostrar());
+			//Mediante interfaces en la misma variable
+			IEquipo equipo = (IEquipo) appContext.getBean("barcelona");
+			System.out.println("Interfaz IEquipo - Nombre: "+equipo.mostrar());
+			equipo = (IEquipo) appContext.getBean("juventus");
+			System.out.println("Interfaz IEquipo - Nombre: "+equipo.mostrar());
 		
-		// A para cada tipo de equipo
-		Barcelona bar = (Barcelona) appContext.getBean("barcelona");
-		System.out.println("Clase Barcelona - Nombre: "+bar.mostrar());
-		Juventus juv = (Juventus) appContext.getBean("juventus");
-		System.out.println("Clase Juventus - Nombre: "+juv.mostrar());
-		//Mediante interfaces en la misma variable
-		IEquipo equipo = (IEquipo) appContext.getBean("barcelona");
-		System.out.println("Interfaz IEquipo - Nombre: "+equipo.mostrar());
-		equipo = (IEquipo) appContext.getBean("juventus");
-		System.out.println("Interfaz IEquipo - Nombre: "+equipo.mostrar());
-	
-		((ConfigurableApplicationContext)appContext).close();
-		*/
+			((ConfigurableApplicationContext)appContext).close();
+			*/
 		
 		
 		/*
 		 * Required annotation
-		 * 		@Required es de spring, , esta anotacion va en el metodo set del atributo en la clase
+		 * 		@Required es de spring, esta anotacion es en el metodo set del atributo en la clase
 					Usa un beanpostproccessor, para reconocer la anotacion de @Required
 						Bean usado: org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor
 					Si no se especifica cual es el equipo en el xml y NO se usa el atributo, no da error
 					Si no se especifica cual es el equipo en el xml y SI se usa el atributo, SI da error
+		 * */
+			/*
+			ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+			Jugador jug = (Jugador) appContext.getBean("messi");
+			
+			System.out.println("Nombre: "+jug.getNombre() + "\nEquipo: " + jug.getEquipo().mostrar());
+		
+			((ConfigurableApplicationContext)appContext).close();
+			*/
+		
+		
+		/*
+		 * 	Autowire annotation
+ 		 *		@Autowired es de spring, esta anotacion es en el atributo en la clase
+ 		 *			Puede ser establecida en el atributo o en el metodo set
+ 		 *			Usa un beanpostproccessor, para reconocer la anotacion de @Autowired
+ 		 *				Bean usado: org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+ 		 *			Por defecto la anotacion utiliza byType para asignar la propiedad automaticamente
+		 *				Es decir, no pueden haber 2 beans del mismo tipo, porque no sabe cual asignar
+		 *				Si solo tenemos 1, el automaticamente lo asigna
+		 *			Por nombre, Podemos espeficar que el autowire lo haga por nombre automaticamente
+		 *				El bean en el xml debe llamarse como se llama el atributo en la clase
+		 *					En este ejemplo, en la clase se llama equipo, entonces cambiamos el nombre a equipo
+		 *			Por un bean sin depender del nombre, mediante una propiedad
+		 *				Al bean que se va a referenciar, se le pone
+		 *					<qualifier value="barcelonaQualifier"></qualifier>
+		 *				En la clase que hace referencia usar la anotacion @Qualifier("nombre del qualifier del bean")
+		 *					@Qualifier para hacer que el busque mediante esto
+		 *					Esto debajo del @Autowired en la clase
+		 *				Se debe agregar Context en el NameSpace(pestaña que esta por donde esta la consola en el ide)
+		 *					Esto agrega la siguiente linea al inicio del xml
+		 *						xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 *						xmlns:context="http://www.springframework.org/schema/context"
+		 *						xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		 *							http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd"
+		 * 	Para reconocer cualquier anotacion que sea bajo spring se debe poner el siguiente tag en el xml
+		 *	<context:annotation-config/>
 		 * */
 		
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");

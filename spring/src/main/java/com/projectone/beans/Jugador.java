@@ -1,5 +1,7 @@
 package com.projectone.beans;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
 
 import com.projectone.interfaces.IEquipo;
@@ -10,6 +12,8 @@ public class Jugador {
 	
 	private String nombre;
 	
+	@Autowired
+	@Qualifier("barcelonaQualifier")
 	private IEquipo equipo;
 	
 	public int getNumero() {
@@ -32,7 +36,7 @@ public class Jugador {
 		return equipo;
 	}
 	
-	@Required //esta anotacion va en el metodo set del atributo
+	//@Required //esta anotacion va en el metodo set del atributo
 	public void setEquipo(IEquipo equipo) {
 		this.equipo = equipo;
 	}

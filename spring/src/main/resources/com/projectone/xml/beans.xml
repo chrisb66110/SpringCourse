@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<!-- Prueba de Mundo
 	<bean id="mundo" class="com.projectone.beans.Mundo">
 		<property name="saludo" value="Hola Mundo!"></property>
@@ -346,7 +348,7 @@
 						Bean usado: org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor
 					Si no se especifica cual es el equipo en el xml y NO se usa el atributo, no da error
 					Si no se especifica cual es el equipo en el xml y SI se usa el atributo, SI da error
-	-->
+	
 	<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"></bean>
 	
 	<bean id="messi" class="com.projectone.beans.Jugador">
@@ -358,6 +360,49 @@
 	<bean id="barcelona" class="com.projectone.beans.Barcelona"></bean>
 	
 	<bean id="juventus" class="com.projectone.beans.Juventus"></bean>
+	-->
+	
+	<!-- Autowire annotation
+				@Autowired es de spring, esta anotacion es en el atributo en la clase
+					Puede ser establecida en el atributo o en el metodo set
+					Usa un beanpostproccessor, para reconocer la anotacion de @Autowired
+						Bean usado: org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor
+					Por defecto la anotacion utiliza byType para asignar la propiedad automaticamente
+						Es decir, no pueden haber 2 beans del mismo tipo, porque no sabe cual asignar
+						Si solo tenemos 1, el automaticamente lo asigna
+					Por nombre, Podemos espeficar que el autowire lo haga por nombre automaticamente
+						El bean en el xml debe llamarse como se llama el atributo en la clase
+							En este ejemplo, en la clase se llama equipo, entonces cambiamos el nombre a equipo
+					Por un bean sin depender del nombre, mediante una propiedad
+						Al bean que se va a referenciar, se le pone
+							<qualifier value="barcelonaQualifier"></qualifier>
+						En la clase que hace referencia usar la anotacion @Qualifier("nombre del qualifier del bean")
+							@Qualifier para hacer que el busque mediante esto
+							Esto debajo del @Autowired en la clase
+						Se debe agregar Context en el NameSpace(pestaña que esta por donde esta la consola en el ide)
+							Esto agrega la siguiente linea al inicio del xml
+								xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+								xmlns:context="http://www.springframework.org/schema/context"
+								xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+									http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd"
+		Para reconocer cualquier anotacion que sea bajo spring se debe poner el siguiente tag en el xml
+			<context:annotation-config/>
+	-->
+	<context:annotation-config/>
+	
+	<bean id="messi" class="com.projectone.beans.Jugador">
+		<property name="numero" value="10"></property>
+		<property name="nombre" value="Leonel Messi"></property>
+		<!--<property name="equipo" ref="juventus"></property>-->
+	</bean>
+	
+	<bean id="barcelona" class="com.projectone.beans.Barcelona">
+		<qualifier value="barcelonaQualifier"></qualifier>
+	</bean>
+	
+	<bean id="juventus" class="com.projectone.beans.Juventus"></bean>
+	
+	<bean id="equipo" class="com.projectone.beans.Juventus"></bean>
 	
 
 </beans>
