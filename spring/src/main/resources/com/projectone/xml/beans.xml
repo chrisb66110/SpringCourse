@@ -328,11 +328,31 @@
 	-->
 	
 	<!-- Interfaces con java y spring
-	-->
+	
 	<bean id="messi" class="com.projectone.beans.Jugador">
 		<property name="numero" value="10"></property>
 		<property name="nombre" value="Leonel Messi"></property>
 		<property name="equipo" ref="barcelona"></property>
+	</bean>
+	
+	<bean id="barcelona" class="com.projectone.beans.Barcelona"></bean>
+	
+	<bean id="juventus" class="com.projectone.beans.Juventus"></bean>
+	-->
+	
+	<!-- Required annotation
+				@Required es de spring, , esta anotacion va en el metodo set del atributo en la clase
+					Usa un beanpostproccessor, para reconocer la anotacion de @Required
+						Bean usado: org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor
+					Si no se especifica cual es el equipo en el xml y NO se usa el atributo, no da error
+					Si no se especifica cual es el equipo en el xml y SI se usa el atributo, SI da error
+	-->
+	<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"></bean>
+	
+	<bean id="messi" class="com.projectone.beans.Jugador">
+		<property name="numero" value="10"></property>
+		<property name="nombre" value="Leonel Messi"></property>
+		<property name="equipo" ref="juventus"></property>
 	</bean>
 	
 	<bean id="barcelona" class="com.projectone.beans.Barcelona"></bean>

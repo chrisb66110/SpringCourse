@@ -288,7 +288,7 @@ public class App {
 		 * Interfaces
 		 * 		Mediante spring
 		 * */
-	
+		/*
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
 		
 		// A para cada tipo de equipo
@@ -301,6 +301,24 @@ public class App {
 		System.out.println("Interfaz IEquipo - Nombre: "+equipo.mostrar());
 		equipo = (IEquipo) appContext.getBean("juventus");
 		System.out.println("Interfaz IEquipo - Nombre: "+equipo.mostrar());
+	
+		((ConfigurableApplicationContext)appContext).close();
+		*/
+		
+		
+		/*
+		 * Required annotation
+		 * 		@Required es de spring, , esta anotacion va en el metodo set del atributo en la clase
+					Usa un beanpostproccessor, para reconocer la anotacion de @Required
+						Bean usado: org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor
+					Si no se especifica cual es el equipo en el xml y NO se usa el atributo, no da error
+					Si no se especifica cual es el equipo en el xml y SI se usa el atributo, SI da error
+		 * */
+		
+		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+		Jugador jug = (Jugador) appContext.getBean("messi");
+		
+		System.out.println("Nombre: "+jug.getNombre() + "\nEquipo: " + jug.getEquipo().mostrar());
 	
 		((ConfigurableApplicationContext)appContext).close();
 		

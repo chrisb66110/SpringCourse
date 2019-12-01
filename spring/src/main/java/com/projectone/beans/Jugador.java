@@ -1,5 +1,7 @@
 package com.projectone.beans;
 
+import org.springframework.beans.factory.annotation.Required;
+
 import com.projectone.interfaces.IEquipo;
 
 public class Jugador {
@@ -30,6 +32,7 @@ public class Jugador {
 		return equipo;
 	}
 	
+	@Required //esta anotacion va en el metodo set del atributo
 	public void setEquipo(IEquipo equipo) {
 		this.equipo = equipo;
 	}
