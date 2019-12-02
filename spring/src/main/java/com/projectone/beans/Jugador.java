@@ -1,15 +1,23 @@
 package com.projectone.beans;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
 import com.projectone.interfaces.IEquipo;
 
+@Component
 public class Jugador {
 	
 	private int id;
 	
 	private String nombre;
 	
+	@Autowired
+	@Qualifier("barcelona")
 	private IEquipo equipo;
 	
+	@Autowired
 	private Camiseta camiseta;
 
 	public int getId() {
