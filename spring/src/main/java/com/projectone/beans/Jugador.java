@@ -2,6 +2,7 @@ package com.projectone.beans;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.projectone.interfaces.IEquipo;
@@ -9,8 +10,10 @@ import com.projectone.interfaces.IEquipo;
 @Component
 public class Jugador {
 	
+	@Value("1")
 	private int id;
 	
+	@Value("Jugador1")
 	private String nombre;
 	
 	@Autowired

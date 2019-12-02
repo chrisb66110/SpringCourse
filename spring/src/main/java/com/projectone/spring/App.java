@@ -453,7 +453,7 @@ public class App {
 		 * 		Se usa la siguiente bean en el xml para reconocer las anotaciones
 		 * 			<context:component-scan base-package="com.projectone"></context:component-scan>
 		 * */
-		
+		/*
 		System.out.println("Equipos: \n1 -> Barcelona \n2 -> Juventus\n\nElija un equipo:");
 		
 		Scanner sc = new Scanner(System.in);
@@ -473,6 +473,49 @@ public class App {
 		
 		
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("com/projectone/xml/beans.xml");
+		Jugador jug = (Jugador) appContext.getBean("jugador1");
+		jug.setEquipo( (IEquipo) appContext.getBean(equipo) );
+		
+		System.out.println( "Nombre: "+jug.getNombre() + 
+							"\nEquipo: " + jug.getEquipo().mostrar() +
+							"\nCamiseta: " + jug.getCamiseta().getNumero() +
+							"\nMarca: " + jug.getCamiseta().getMarca().getNombre());
+	
+		((ConfigurableApplicationContext)appContext).close();
+		*/
+		
+		
+		/*
+		 * Ejercicio java based
+		 * 		Uso la clase AppConfigExerciseJavaBased
+		 * 			Para definir el bean de 
+		 * 				jugador1
+		 * 				barcelona
+		 * 				juventus
+		 * 
+		 *		Usamos el context
+		 *			AnnotationConfigApplicationContext (AppConfigExerciseJavaBased.class)
+		 * */
+		
+		System.out.println("Equipos: \n1 -> Barcelona \n2 -> Juventus\n\nElija un equipo:");
+		
+		Scanner sc = new Scanner(System.in);
+		int respuesta = sc.nextInt();
+		
+		String equipo = "";
+		switch(respuesta) {
+			case 1:
+				equipo = "barcelona";
+				break;
+			case 2:
+				equipo = "juventus";
+				break;
+			default:
+				break;
+		}
+		
+		
+		ApplicationContext appContext = new AnnotationConfigApplicationContext (AppConfigExerciseJavaBased.class);
 		Jugador jug = (Jugador) appContext.getBean("jugador1");
 		jug.setEquipo( (IEquipo) appContext.getBean(equipo) );
 		

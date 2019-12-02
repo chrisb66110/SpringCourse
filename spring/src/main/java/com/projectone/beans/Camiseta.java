@@ -1,13 +1,16 @@
 package com.projectone.beans;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Camiseta {
 	
+	@Value("10")
 	private int id;
 	
+	@Value("10")
 	private int numero;
 	
 	@Autowired

@@ -472,12 +472,19 @@
 	<!-- Ejercicio anotaciones
 			Se usa el sigueinte bean para reconocer todos las anotaciones
 				<context:component-scan base-package="com.projectone"></context:component-scan>
-	-->
+	
 	<context:component-scan base-package="com.projectone"></context:component-scan>
 	<bean id="jugador1" class="com.projectone.beans.Jugador">
 		<property name="id" value="1"></property>
 		<property name="nombre" value="jugador1"></property>
 	</bean>
+	-->
+	
+	
+	
+	<!-- Ejercicio java based
+		No lleva nada
+	-->
 	
 </beans>
 
