@@ -18,7 +18,7 @@ public class ServiceMarcaImpl implements ServiceMarca{
 			daoMarca.registrar(marca);
 		}
 		catch(Exception e){
-			System.out.println("Exception Service: " + e.getMessage());
+			System.out.println("Exception ServiceMarcaImpl: " + e.getMessage());
 			throw e;
 		}
 		

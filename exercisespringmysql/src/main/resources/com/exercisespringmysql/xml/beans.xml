@@ -16,5 +16,28 @@
 		<property name="username" value="root"></property>
 		<property name="password" value="1234"></property>
 	</bean>
+	
+	<bean id="marca4" class="com.exercisespringmysql.beans.Marca">
+		<property name="id" value="4"></property>
+		<property name="nombre" value="MARCA4"></property>
+	</bean>
+	
+	<bean id="camiseta1" class="com.exercisespringmysql.beans.Camiseta">
+		<property name="id" value="1"></property>
+		<property name="numero" value="1"></property>
+		<property name="marca" ref="marca4"></property>
+	</bean>
+	
+	<bean id="equipo1" class="com.exercisespringmysql.beans.Equipo">
+		<property name="id" value="1"></property>
+		<property name="nombre" value="EQIPO 1"></property>
+	</bean>
+	
+	<bean id="jugador4" class="com.exercisespringmysql.beans.Jugador">
+		<property name="id" value="4"></property>
+		<property name="nombre" value="JUGADOR 4"></property>
+		<property name="equipo" ref="equipo1"></property>
+		<property name="camiseta" ref="camiseta1"></property>
+	</bean>
 
 </beans>

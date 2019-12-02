@@ -40,9 +40,9 @@ INSERT INTO Camiseta(id, numero, marca_id) VALUES(1, 1, 1);
 INSERT INTO Camiseta(id, numero, marca_id) VALUES(2, 2, 2);
 INSERT INTO Camiseta(id, numero, marca_id) VALUES(3, 3, 3);
 
-INSERT INTO Jugador(id, nombre, equipo_id, camiseta_id) VALUES(1, "Jugador 1", 1, 1);
-INSERT INTO Jugador(id, nombre, equipo_id, camiseta_id) VALUES(2, "Jugador 1", 2, 2);
-INSERT INTO Jugador(id, nombre, equipo_id, camiseta_id) VALUES(3, "Jugador 1", 3, 3);
+INSERT INTO Jugador(id, nombre, equipo_id, camiseta_id) VALUES(1, "JUGADOR 1", 1, 1);
+INSERT INTO Jugador(id, nombre, equipo_id, camiseta_id) VALUES(2, "JUGADOR 2", 2, 2);
+INSERT INTO Jugador(id, nombre, equipo_id, camiseta_id) VALUES(3, "JUGADOR 3", 3, 3);
 
 Select * from Equipo;
 Select * from Marca;
